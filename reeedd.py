@@ -5,8 +5,6 @@ wrap.world.create_world(1190, 804)
 spisoktochhek = []
 spisokkustov = []
 spicok_sedeneh= []
-tochka = wrap.sprite.add("pppp", 66666, 777777, "krug", False)
-
 
 def postroy_stena_x(otkuda, dokuda, y):
     t = range(otkuda, dokuda, 1)
@@ -44,20 +42,32 @@ def tochke(x, y):
     wrap.sprite.set_size(tochka, 15, 15)
     spisoktochhek.append(tochka)
 
+    for did in spisokkustov:
+        what = wrap.sprite.is_collide_sprite(did,tochka)
+        if what == True:
+            spisoktochhek.remove(tochka)
+            wrap.sprite.remove(tochka)
+            break
 
 def edim_tochke(nomertocke):
+
     what = wrap.sprite.is_collide_sprite(pucman,nomertocke)
+
     if what == True:
         wrap.sprite.remove(nomertocke)
         spisoktochhek.remove(nomertocke)
 
 
 
-# @wrap.always(delay=5)
-# def delaem_schetchik():
-#
-#     wrap.sprite.add_text(spicok_sedeneh,50,50)
+@wrap.always()
+def delaem_schetchik():
+    pop=0
+    what = wrap.sprite.is_collide_sprite(pucman,spisoktochhek)
+    if what == True  :
+        pop+=1
 
+
+    print(pop)
 
 def zactraevaem_pole_tochke(y):
     t = range(0, 35, 1)
@@ -93,6 +103,7 @@ def levl_1():
 
     t = range(0, 23, 1)
     tyr = [*t]
+
     for did in tyr:
         postroy_tochke(1, 35, did)
 
@@ -101,6 +112,7 @@ def levl_1():
 
 
 levl_1()
+wrap.sprite.add_text("ПОЙМАНЫЕ ТОЧКИ", 100, 100, text_color=(0, 255, 6))
 
 print(spisokkustov)
 
@@ -160,6 +172,8 @@ def dvizhenie_kist(nomerkusta):
         pop = wrap.sprite.get_top(nomerkusta)
 
         wrap.sprite.move_bottom_to(pucman, pop - 1)
+
+
 
 
 import wrap_py
