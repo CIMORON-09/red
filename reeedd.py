@@ -98,6 +98,14 @@ def levl_1():
     postroy_stena_x(0, 35, 0)
     postroy_stena_x(0, 35, 22)
     postroy_stena_y(0, 22, 0)
+    postroy_stena_y(8,14,11.5)
+    postroy_stena_y(8,14,19.5)
+    postroy_stena_x(12,20,8)
+    postroy_stena_x(12,19,13)
+
+
+
+
     postroy_stena_y(0, 22, 33)
     postroy_stena_y(4, 18, 29.5)
     postroy_stena_y(4, 18, 3.5)
