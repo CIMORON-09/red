@@ -5,6 +5,8 @@ wrap.world.create_world(1190, 804)
 spisoktochhek = []
 spisokkustov = []
 spicok_sedeneh= []
+schet =0
+id_scheta=wrap.sprite.add_text("0",333, 100, text_color=(0, 255, 6))
 
 def postroy_stena_x(otkuda, dokuda, y):
     t = range(otkuda, dokuda, 1)
@@ -59,15 +61,23 @@ def edim_tochke(nomertocke):
 
 
 
-@wrap.always()
+
 def delaem_schetchik():
-    pop=0
-    what = wrap.sprite.is_collide_sprite(pucman,spisoktochhek)
-    if what == True  :
-        pop+=1
+    global schet
 
 
-    print(pop)
+    for did in spisoktochhek :
+
+        what = wrap.sprite.is_collide_sprite(pucman,did)
+        if what == True  :
+            schet=int(schet)
+            schet+=1
+            schet=str(schet)
+            wrap.sprite_text.set_text(id_scheta,schet)
+            edim_tochke(did)
+
+
+    print(schet)
 
 def zactraevaem_pole_tochke(y):
     t = range(0, 35, 1)
@@ -144,12 +154,11 @@ def dvizhenie(keys):
     for did in spisokkustov:
         dvizhenie_kist(did)
 
-    for did in spisoktochhek:
-        edim_tochke(did)
+    delaem_schetchik()
 
 
 def dvizhenie_kist(nomerkusta):
-    print("проветрка")
+
     what = wrap.sprite.is_collide_sprite(pucman, nomerkusta)
     gradus = wrap.sprite.get_angle(pucman)
 
