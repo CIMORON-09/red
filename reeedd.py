@@ -4,9 +4,10 @@ wrap.add_sprite_dir("mayspraite")
 wrap.world.create_world(1190, 804)
 spisoktochhek = []
 spisokkustov = []
-spicok_sedeneh= []
-schet =0
-id_scheta=wrap.sprite.add_text("0",333, 100, text_color=(0, 255, 6))
+spicok_sedeneh = []
+schet = 0
+id_scheta = wrap.sprite.add_text("0", 333, 100, text_color=(0, 255, 6))
+
 
 def postroy_stena_x(otkuda, dokuda, y):
     t = range(otkuda, dokuda, 1)
@@ -45,15 +46,15 @@ def tochke(x, y):
     spisoktochhek.append(tochka)
 
     for did in spisokkustov:
-        what = wrap.sprite.is_collide_sprite(did,tochka)
+        what = wrap.sprite.is_collide_sprite(did, tochka)
         if what == True:
             spisoktochhek.remove(tochka)
             wrap.sprite.remove(tochka)
             break
 
-def edim_tochke(nomertocke):
 
-    what = wrap.sprite.is_collide_sprite(pucman,nomertocke)
+def edim_tochke(nomertocke):
+    what = wrap.sprite.is_collide_sprite(pucman, nomertocke)
 
     if what == True:
         wrap.sprite.remove(nomertocke)
@@ -61,23 +62,32 @@ def edim_tochke(nomertocke):
 
 
 
-
 def delaem_schetchik():
     global schet
 
+    for did in spisoktochhek:
 
-    for did in spisoktochhek :
+        what = wrap.sprite.is_collide_sprite(pucman, did)
+        if what == True:
 
-        what = wrap.sprite.is_collide_sprite(pucman,did)
-        if what == True  :
-            schet=int(schet)
-            schet+=1
-            schet=str(schet)
-            wrap.sprite_text.set_text(id_scheta,schet)
+            schet += 1
+
+            wrap.sprite_text.set_text(id_scheta, str(schet))
             edim_tochke(did)
 
 
+        if schet>111:
+
+            #  если не ту то
+            # рисуем
+
+            # prividenie = wrap.sprite.add("pacman",100 ,100, "enemy_red_right1")
+
+
+
+
     print(schet)
+
 
 def zactraevaem_pole_tochke(y):
     t = range(0, 35, 1)
@@ -95,29 +105,42 @@ def stroem_kust_po_kvadratnomu_kardenata(x, y):
 
 
 def levl_1():
+    # стены
     postroy_stena_x(0, 35, 0)
     postroy_stena_x(0, 35, 22)
     postroy_stena_y(0, 22, 0)
-    postroy_stena_y(8,14,11.5)
-    postroy_stena_y(8,14,19.5)
-    postroy_stena_x(12,20,8)
-    postroy_stena_x(12,19,13)
-
-
-
-
     postroy_stena_y(0, 22, 33)
-    postroy_stena_y(4, 18, 29.5)
-    postroy_stena_y(4, 18, 3.5)
-    postroy_stena_y(4, 18, 1)
-    postroy_stena_y(4, 18, 32)
-    postroy_stena_x(10, 22, 20)
-    postroy_stena_x(10, 22, 2)
-    postroy_stena_x(2, 8, 21)
-    postroy_stena_x(2, 8, 1)
-    postroy_stena_x(2, 8, 21)
+
+    # дполнения маленбкие стены
     postroy_stena_x(26, 32, 21)
     postroy_stena_x(26, 32, 1)
+    postroy_stena_x(2, 8, 21)
+    postroy_stena_x(2, 8, 1)
+
+    # коридор пакманас низу и сверху
+    postroy_stena_x(10, 22, 20)
+    postroy_stena_x(10, 22, 2)
+
+    # кридор пакмана слева и справа
+
+    postroy_stena_y(4, 18, 29.5)
+
+    postroy_stena_y(4, 18, 3.5)
+
+    postroy_stena_y(4, 18,32)
+
+    postroy_stena_y(4, 18,1)
+    # дам приведений ????!!!!
+
+    postroy_stena_y(8, 14, 11.5)
+
+    postroy_stena_y(8, 14, 19.5)
+
+    postroy_stena_x(12,15, 8)
+    postroy_stena_x(17, 20, 8)
+    postroy_stena_x(12, 20, 13)
+
+
 
     t = range(0, 23, 1)
     tyr = [*t]
@@ -166,7 +189,6 @@ def dvizhenie(keys):
 
 
 def dvizhenie_kist(nomerkusta):
-
     what = wrap.sprite.is_collide_sprite(pucman, nomerkusta)
     gradus = wrap.sprite.get_angle(pucman)
 
@@ -189,8 +211,6 @@ def dvizhenie_kist(nomerkusta):
         pop = wrap.sprite.get_top(nomerkusta)
 
         wrap.sprite.move_bottom_to(pucman, pop - 1)
-
-
 
 
 import wrap_py
