@@ -6,8 +6,7 @@ spisoktochhek = []
 spisokkustov = []
 spicok_sedeneh = []
 schet = 0
-id_scheta = wrap.sprite.add_text("0", 333, 100, text_color=(0, 255, 6))
-
+prividenie=None
 
 def postroy_stena_x(otkuda, dokuda, y):
     t = range(otkuda, dokuda, 1)
@@ -63,7 +62,7 @@ def edim_tochke(nomertocke):
 
 
 def delaem_schetchik():
-    global schet
+    global schet , prividenie
 
     for did in spisoktochhek:
 
@@ -76,12 +75,8 @@ def delaem_schetchik():
             edim_tochke(did)
 
 
-        if schet>111:
-
-            #  если не ту то
-            # рисуем
-
-            # prividenie = wrap.sprite.add("pacman",100 ,100, "enemy_red_right1")
+        if schet>10 and prividenie==None:
+            prividenie = wrap.sprite.add("pacman",500 ,400, "enemy_red_right1")
 
 
 
@@ -153,7 +148,9 @@ def levl_1():
 
 
 levl_1()
-wrap.sprite.add_text("ПОЙМАНЫЕ ТОЧКИ", 100, 100, text_color=(0, 255, 6))
+id_scheta = wrap.sprite.add_text("0",275,15, text_color=(0, 255, 6))
+
+wrap.sprite.add_text("ПОЙМАНЫЕ ТОЧКИ", 150,15, text_color=(0, 255, 6))
 
 print(spisokkustov)
 
