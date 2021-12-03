@@ -75,8 +75,15 @@ def delaem_schetchik():
             edim_tochke(did)
 
 
-        if schet>10 and prividenie==None:
+        if schet==10 and prividenie==None:
             prividenie = wrap.sprite.add("pacman",500 ,400, "enemy_red_right1")
+
+        # если привидение  есть
+        if prividenie!= None:
+            pacman_x=wrap.sprite.get_centerx(pucman)
+            pacman_y=wrap.sprite.get_centery(pucman)
+            wrap.sprite.move_at_angle_point(prividenie,pacman_x+50,pacman_y+50, 4)
+
 
 
 
