@@ -6,7 +6,8 @@ spisoktochhek = []
 spisokkustov = []
 spicok_sedeneh = []
 schet = 0
-prividenie=None
+prividenie = None
+
 
 def postroy_stena_x(otkuda, dokuda, y):
     t = range(otkuda, dokuda, 1)
@@ -60,30 +61,33 @@ def edim_tochke(nomertocke):
         spisoktochhek.remove(nomertocke)
 
 
-
 def delaem_schetchik():
-    global schet , prividenie
+    global schet, prividenie
 
     for did in spisoktochhek:
 
         what = wrap.sprite.is_collide_sprite(pucman, did)
         if what == True:
-
             schet += 1
 
             wrap.sprite_text.set_text(id_scheta, str(schet))
             edim_tochke(did)
 
-
-        if schet==10 and prividenie==None:
-            prividenie = wrap.sprite.add("pacman",500 ,400, "enemy_red_right1")
+        if schet == 10 and prividenie == None:
+            prividenie = wrap.sprite.add("pacman", 500, 400, "enemy_red_right1")
 
         # если привидение  есть
-        if prividenie!= None:
-            pacman_x=wrap.sprite.get_centerx(pucman)
-            pacman_y=wrap.sprite.get_centery(pucman)
-            wrap.sprite.move_at_angle_point(prividenie,pacman_x+50,pacman_y+50, 4)
 
+
+@wrap.always(delay=10)
+def siiuuuuu_seeeeeeeee():
+    if prividenie != None:
+        pacman_x = wrap.sprite.get_centerx(pucman)
+        pacman_y = wrap.sprite.get_centery(pucman)
+        wrap.sprite.move_at_angle_point(prividenie, pacman_x, pacman_y, 2)
+        oo=wrap.sprite.is_collide_sprite(pucman,prividenie)
+        if oo == True:
+            wrap.sprite.add_text("GAME OVER",500,500, text_color=(0, 255, 6))
 
 
 
@@ -129,20 +133,18 @@ def levl_1():
 
     postroy_stena_y(4, 18, 3.5)
 
-    postroy_stena_y(4, 18,32)
+    postroy_stena_y(4, 18, 32)
 
-    postroy_stena_y(4, 18,1)
+    postroy_stena_y(4, 18, 1)
     # дам приведений ????!!!!
 
     postroy_stena_y(8, 14, 11.5)
 
     postroy_stena_y(8, 14, 19.5)
 
-    postroy_stena_x(12,15, 8)
+    postroy_stena_x(12, 15, 8)
     postroy_stena_x(17, 20, 8)
     postroy_stena_x(12, 20, 13)
-
-
 
     t = range(0, 23, 1)
     tyr = [*t]
@@ -155,9 +157,9 @@ def levl_1():
 
 
 levl_1()
-id_scheta = wrap.sprite.add_text("0",275,15, text_color=(0, 255, 6))
+id_scheta = wrap.sprite.add_text("0", 275, 15, text_color=(0, 255, 6))
 
-wrap.sprite.add_text("ПОЙМАНЫЕ ТОЧКИ", 150,15, text_color=(0, 255, 6))
+wrap.sprite.add_text("ПОЙМАНЫЕ ТОЧКИ", 150, 15, text_color=(0, 255, 6))
 
 print(spisokkustov)
 
