@@ -7,6 +7,7 @@ spisokkustov = []
 spicok_sedeneh = []
 schet = 0
 prividenie = None
+teleport = wrap.sprite.add("battle_city_tanks",52 ,742, "tank_enemy_size1_purple1")
 
 
 def postroy_stena_x(otkuda, dokuda, y):
@@ -20,8 +21,8 @@ def postroy_tochke(otkuda, dokuda, y):
     t = range(otkuda, dokuda, 1)
     u = [*t]
     for did in u:
-        ppop = random.randint(1, 100)
-        if ppop > 50:
+        ppop = random.randint(1,100)
+        if ppop ==1:
             ctroem_tochku_po_kvadratnom_kaardenatam(did, y)
 
 
@@ -88,11 +89,27 @@ def siiuuuuu_seeeeeeeee():
         oo=wrap.sprite.is_collide_sprite(pucman,prividenie)
         if oo == True:
             wrap.sprite.add_text("GAME OVER",500,500, text_color=(0, 255, 6))
-
+    eee=len(spisoktochhek)
+    if eee==0 :
+        wrap.sprite.add_text("YOU ARE WINER!",500,500, text_color=(0, 255, 6))
 
 
 
     print(schet)
+
+
+def teleporteruem_pucman ():
+
+
+    rue=wrap.sprite.is_collide_sprite(pucman,teleport)
+    if   rue==True :
+        wrap.sprite.move(pucman,1138,51)
+
+
+
+@wrap.on_mouse_move
+def prrp(pos_x,pos_y):
+    wrap.world.set_title(str(pos_x)+" "+str(pos_y))
 
 
 def zactraevaem_pole_tochke(y):
@@ -192,7 +209,7 @@ def dvizhenie(keys):
         dvizhenie_kist(did)
 
     delaem_schetchik()
-
+    teleporteruem_pucman()
 
 def dvizhenie_kist(nomerkusta):
     what = wrap.sprite.is_collide_sprite(pucman, nomerkusta)
