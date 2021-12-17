@@ -7,7 +7,10 @@ spisokkustov = []
 spicok_sedeneh = []
 schet = 0
 prividenie = None
-teleport = wrap.sprite.add("battle_city_tanks",52 ,742, "tank_enemy_size1_purple1")
+teleport_1 = wrap.sprite.add("battle_city_tanks", 52, 742, "tank_enemy_size1_purple1")
+teleport_2 = wrap.sprite.add("battle_city_tanks",54,51, "tank_enemy_size1_purple1")
+teleport_3 = wrap.sprite.add("battle_city_tanks",1138,55 ,"tank_enemy_size1_purple1")
+teleport_4 = wrap.sprite.add("battle_city_tanks",1138,754 ,"tank_enemy_size1_purple1")
 
 
 def postroy_stena_x(otkuda, dokuda, y):
@@ -22,7 +25,7 @@ def postroy_tochke(otkuda, dokuda, y):
     u = [*t]
     for did in u:
         ppop = random.randint(1,100)
-        if ppop ==1:
+        if ppop <50:
             ctroem_tochku_po_kvadratnom_kaardenatam(did, y)
 
 
@@ -95,15 +98,56 @@ def siiuuuuu_seeeeeeeee():
 
 
 
-    print(schet)
 
 
 def teleporteruem_pucman ():
 
 
-    rue=wrap.sprite.is_collide_sprite(pucman,teleport)
-    if   rue==True :
-        wrap.sprite.move(pucman,1138,51)
+    teleport1=wrap.sprite.is_collide_sprite(pucman,teleport_1)
+    teleport2=wrap.sprite.is_collide_sprite(pucman,teleport_2)
+    teleport3=wrap.sprite.is_collide_sprite(pucman,teleport_3)
+    teleport4=wrap.sprite.is_collide_sprite(pucman,teleport_4)
+
+
+
+
+
+    mesto1=[51, 646]
+    mesto2=[54,127]
+    mesto3=[1135, 121]
+    mesto4=[1137, 651]
+    if  teleport1==True :
+        choice_x = random.choice([mesto2,mesto3,mesto4])
+
+        wrap.sprite.move_to(pucman,choice_x[0],choice_x[1])
+
+
+    if   teleport2==True :
+
+        choice_x=random.choice([mesto1,mesto3,mesto4])
+        print(choice_x)
+
+
+        wrap.sprite.move_to(pucman,choice_x[0],choice_x[1])
+
+
+    if   teleport3==True :
+
+        choice_x=random.choice([mesto1,mesto2,mesto4])
+        print(choice_x)
+
+
+        wrap.sprite.move_to(pucman,choice_x[0],choice_x[1])
+
+
+
+    if   teleport4==True :
+
+        choice_x=random.choice([mesto1,mesto2,mesto3])
+        print(choice_x)
+
+
+        wrap.sprite.move_to(pucman,choice_x[0],choice_x[1])
 
 
 
